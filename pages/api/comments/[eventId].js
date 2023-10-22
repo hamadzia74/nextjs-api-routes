@@ -1,8 +1,12 @@
 function handler(req, res) {
     const eventId = req.query.eventId
+    // console.log("eventId", eventId)
 
     if (req.method === 'POST') {
         const { email, name, text } = req.body;
+
+        // console.log("email, name, text", req.body)
+
         if (!email.includes('@') || !name || name.trim() === '' || !text || text.trim() === '') {
             res.status(422).json({ message: 'Invalid input.' });
             return;
