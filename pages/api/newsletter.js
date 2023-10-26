@@ -1,9 +1,9 @@
-import { MongoClient } from 'mongodb';
+import {connectDatabase, inserDocument} from '../../helpers/db-utils';
 
-async function connectDatabase() {
-    const client = await MongoClient.connect('mongodb+srv://username:password@meetupapi.h7ydopx.mongodb.net/events?retryWrites=true&w=majority')
-    return client;
-}
+// async function connectDatabase() {
+//     const client = await MongoClient.connect('mongodb+srv://hamadzia74:WuQxY35zxbCL4bie@meetupapi.h7ydopx.mongodb.net/?retryWrites=true&w=majority')
+//     return client;
+// }
 
 async function inserDocument(client, document) {
     const db = client.db();
@@ -31,7 +31,7 @@ async function handler(req, res) {
         try {
             client.close();
 
-            await inserDocument(client, { email: userEmail });
+            await inserDocument(client, 'newsletter', { email: userEmail });
         } catch (error) {
             res.status(500).json({ message: 'Inserting data failed!' });
             return;
