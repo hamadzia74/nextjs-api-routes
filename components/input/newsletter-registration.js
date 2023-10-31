@@ -29,7 +29,7 @@ function NewsletterRegistration() {
       }
       return response.json().then(data => {
         throw new Error(data.message || 'Something went wrong!')
-      })
+      });
     })
       .then(data => {
         notificationCtx.showNotification({
